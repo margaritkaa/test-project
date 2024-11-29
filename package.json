@@ -8,6 +8,9 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "playwright": "^1.49.0"
+  },
   "devDependencies": {}
 }
+
