@@ -1,10 +1,13 @@
-// test.js
-const { test, expect } = require('@playwright/test');
+test('Перевірка форми входу', async ({ page }) => {
+  // Замінимо URL на неправильний
+  await page.goto('http://localhost:3000/nonexistentpage'); // Це викликає помилку при тестуванні
 
-test('Тест главной страницы', async ({ page }) => {
-  // Открываем главную страницу
-  await page.goto('http://localhost:3000');
+  // Заповнення форми залишається тим самим
+  await page.fill('#username', 'test_user');
+  await page.fill('#password', 'password123');
+  await page.click('#loginButton');
 
-  // Проверяем, что на странице есть текст "Hello, World!"
-  await expect(page).toHaveText('Hello, World!');
+  // Перевірка неправильного URL
+  await expect(page).toHaveURL('http://localhost:3000/');  // Цей тест не пройде, бо сторінка не існує
 });
+
